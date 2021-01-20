@@ -4,7 +4,8 @@ import re
 with open("tests/result.json", "r", encoding="utf8") as read_file:
     data = json.load(read_file)
 
-bitloks = []
+bitloks = {'bito4ki': []}
+n_bitloks = {'bito4ki': []}
 
 def parse_itlocker():
     list_messages = data["messages"]
@@ -16,10 +17,11 @@ def parse_itlocker():
             try:
                 if len(prev_massage) > 1:
                     zion_number = re.sub(r'\s', '', prev_massage[1])
+
                 split_massage = re.split(r'\+', massage["text"])
                 password, recovery_key = split_massage[0], split_massage[1]
                 dict = {'zion': zion_number,
-                        'poassword': password,
+                        'password': password,
                         'recovery': recovery_key}
                 update_dictionary(dict)
             except IndexError:
@@ -29,9 +31,16 @@ def parse_itlocker():
 
 def delete_considences():
     return 0;
+#    for i in range(len(bitloks['bito4ki'])):
+#        for j in range(1, len(bitloks['bito4ki']) - 1):
+#            if bitloks['bito4ki'][i].get('zion') != bitloks['bito4ki'][j].get('zion'):
+#                n_bitloks['bito4ki'].append({
+#                    'zion': bitloks['bito4ki'][i].get('zion'),
+#                    'password': bitloks['bito4ki'][i].get('password'),
+#                    'recovery': bitloks['bito4ki'][i].get('recovery')})
 
 def update_dictionary(dict):
-    bitloks.append(dict)
+    bitloks['bito4ki'].append(dict)
 
 parse_itlocker()
 delete_considences()
