@@ -87,5 +87,6 @@ if __name__ == "__main__":
     parse_ITLocker()
     parse_without_ITLocker()
 
-    with open("tests/result-2-2.json", "w") as outfile:
+    print(len(bit_locks['bito4ki']))
+    with open("tests/result-2-3.json", "w") as outfile:
         json.dump(bit_locks, outfile, indent=2, ensure_ascii=False)
