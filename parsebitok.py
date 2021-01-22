@@ -3,6 +3,7 @@ import re
 
 bit_locks = {'bito4ki': []}
 
+
 def position_dict(l_list):
     for item in range(len(l_list)):
         if type(l_list[item]) == dict:
@@ -43,9 +44,6 @@ def parse_without_ITLocker():
                             'recovery': recovery_key}
                 update_dictionary(gen_dict)
 
-    with open("tests/result-2.json", "w") as outfile:
-        json.dump(bit_locks, outfile, indent=2)
-
 
 def parse_ITLocker():
     with open("tests/result.json", "r", encoding="utf8") as read_file:
@@ -75,9 +73,6 @@ def parse_ITLocker():
 
         count += 1
 
-    with open("tests/result-1.json", "w") as outfile:
-        json.dump(bit_locks, outfile, indent=2)
-
 
 def check_coincidences(l_dict):
     status = 0
@@ -88,12 +83,9 @@ def check_coincidences(l_dict):
     return status
 
 
-def update_dictionary(l_dict):
-    bit_locks['bito4ki'].append(l_dict)
-
-
 if __name__ == "__main__":
     parse_ITLocker()
     parse_without_ITLocker()
 
-
+    with open("tests/result-2-2.json", "w") as outfile:
+        json.dump(bit_locks, outfile, indent=2, ensure_ascii=False)
